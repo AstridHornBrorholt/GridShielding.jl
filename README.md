@@ -39,12 +39,21 @@ Or in the repl: `] add https://github.com/AstridHornBrorholt/GridShielding.jl`
 ## Notebooks
 
 See the [Pluto Notebook examples](notebooks) for detailed working examples.
-Before use, navigate to the folder and install the GridShielding package.
+I recommend starting with the [Grid World](notebooks/GridWorld.jl) notebook as it is the most straightforward and self-contained.
+
+The following instructions have not been tested and may require improvisation:
+Before starting a notebook, navigate to the folder and install the GridShielding package.
 
     cd notebooks
     julia
     ] activate .
     ] add https://github.com/AstridHornBrorholt/GridShielding.jl 
+
+To run a notebook, 
+
+    ] add Pluto
+    using Pluto
+    Pluto.run()
 
 ## Quickstart
 
@@ -91,7 +100,7 @@ function is_safe(bounds::Bounds)::Bool
     # Your code here
 end
 
-# Sets of actions are encoded in the grid as integers. This is resp. {a, b, c} and {}
+# Sets of actions are encoded in the grid as integers. These values are resp. {a, b, c} and {}
 any_action, no_action = actions_to_int(instances(MyAction)), actions_to_int([])
 
 initialize!(grid, state -> is_safe(state) ? any_action : no_action)
