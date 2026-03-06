@@ -71,10 +71,10 @@ end
 
 The shield is represented as a finite partition of a state-space, associating sets of allowed actions with each partition.
 The grid is defined as the outer bounds of your state-space, and a granularity (partition-size) of each axis.
-The following describes the state-space $(-10; 10]×(-1; 2]$
+The following describes the state-space $[-10; 10)×[-1; 2)$
 
 ```julia
-# Array of lower bounds, followed by upper bounds.
+# Array of (inclusive) lower bounds, followed by (strict) upper bounds.
 outer_bounds = Bounds([-10, -1], [10, 2])
 
 granularity = [1.0, 0.01]
@@ -97,7 +97,7 @@ any_action, no_action = actions_to_int(instances(MyAction)), actions_to_int([])
 initialize!(grid, state -> is_safe(state) ? any_action : no_action)
 ```
 
-Find the unique partition containing a state by calling `box(grid, state)`, e.g. `box(grid, [0.0, 0.1])` gives the partition $(-1; 0]×(0.99; 0.1]$.
+Find the unique partition containing a state by calling `box(grid, state)`, e.g. `box(grid, [0.0, 0.1])` gives the partition $[0, 1)×[0.99, 0.1)$.
 
 ### Reachability Function
 
